@@ -100,11 +100,12 @@ export class EventFoodPage implements OnInit {
 
     const allowed = await this.checkPermission();
     if (allowed) {
+      
       this.scanActive = true;
-      // BarcodeScanner.hideBackground();
+      BarcodeScanner.hideBackground();
       const result = await BarcodeScanner.startScan();
       console.log('bar code', this.scanActive, result);
-
+      
       if (result.hasContent) {
         this.scanActive = false;
         this.member_id.setValue(result.content)
