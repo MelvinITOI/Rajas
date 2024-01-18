@@ -1,0 +1,84 @@
+<header [pageTitle]="header" [showBackBtn]="true"></header>
+
+<ion-content>
+  <div [style.--background]="scanActive?'#00000000':'#ffffff'">
+    <!--Venue-->
+    <ion-list *ngIf="!scanActive && type != 1" class="ion-padding" style="margin-left: 15px;margin-top: 20px;">
+      <ion-row>
+        <ion-icon name="business-outline" style="font-size: 20px;"></ion-icon>
+        <ion-label style="margin-left: 10px;">Venue or Hall</ion-label>
+      </ion-row>
+      <ion-item>
+        <ion-select style="margin-left: 30px;" aria-label="Fruit" (ionChange)="getmember()" interface="popover"
+          placeholder="Select Venue">
+          <ion-select-option value="1">{{venue?.venueName}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <!--Member-->
+    <ng-container *ngIf="!scanActive">
+      <ion-item class="ion-padding" *ngIf="showinput || (type == 1 && !showinput)">
+        <ion-icon name="person-outline" style="margin-right: 10px;font-size: 20px;"></ion-icon>
+        <ion-label>ID :</ion-label>
+        <ion-input [formControl]="member_id"></ion-input>
+        <ion-icon name="qr-code" slot="end" color="primary" style="font-size: 20px" (click)="startScanner()"></ion-icon>
+      </ion-item>
+    </ng-container>
+    <ion-item lines="none" *ngIf="type == 3">
+      <ion-label style="font-weight: 600;">Current Date : {{dateTime | date}}</ion-label>
+    </ion-item>
+    <!--Accompay--><!--Add new checkbox name like (CHECK KIT)-->
+    <ng-container *ngIf="!scanActive && type ==1">
+      <h3 class="ion-padding" style="font-size: x-large;font-weight: 600;">Accompay</h3>
+      <ng-container *ngIf="isAccompaySubmit && +accompay?.length && !loading">
+        <ng-container *ngFor="let a of accompay;let i = index">
+          <ion-item>
+            <ion-avatar>
+              <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+            </ion-avatar>
+            <ion-col>
+              <ion-label style="margin-left: 10px;" *ngFor="let b of Details">
+                <ion-row>
+                  <ion-col style="font-weight: 600;">{{b?.title}}:</ion-col>
+                  <ion-col>{{a?.[b.colname] ||''}}</ion-col>
+                </ion-row>
+              </ion-label>
+            </ion-col>
+            <ion-checkbox labelPlacement="end" (ionChange)="select_accompay(i)"></ion-checkbox>
+          </ion-item>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="isAccompaySubmit && !(+accompay?.length) && !loading">
+        <!-- <ion-backdrop [visible]="true"></ion-backdrop> -->
+        <div class="center-screen error">
+          <ion-col>
+            <ion-icon name="close" style="font-size: 140px;color: red;"></ion-icon><br>
+            <p style="font-size: larger;font-weight: 600;margin-bottom: 30px; margin-right: 10px;">No Accompay Data
+              Found</p>
+          </ion-col>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="showsuccess">
+      <ion-backdrop [visible]="true"></ion-backdrop>
+      <div class="center-screen" id="box">
+        <ion-col>
+          <ion-icon name="checkmark" style="font-size: 140px;color: green;"></ion-icon><br>
+          <p style="font-size: larger;font-weight: 600;margin-bottom: 30px;
+    margin-right: 10px;">Success</p>
+        </ion-col>
+      </div>
+    </ng-container><br>
+    <!--Scanner-->
+    <ion-row class="scan-button" *ngIf="scanActive">
+      <ion-col class="ion-no-padding">
+        <ion-button expand="full" (click)="stopScanner()">Stop</ion-button>
+      </ion-col>
+    </ion-row>
+    <!--Scanner-->
+    <div class="scan-box" *ngIf="scanActive"></div>
+    <ion-footer lines="none" *ngIf="!scanActive">
+      <ion-button expand="full" (click)="submit()" [disabled]="member_id.invalid">Submit</ion-button>
+    </ion-footer>
+  </div>
+</ion-content>

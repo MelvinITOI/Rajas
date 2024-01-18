@@ -1,0 +1,22 @@
+<div class="form" [formGroup]="imageForm" enctype="multipart/form-data" contentType="false">
+  <div class="custom-file" (click)="selectImage()">
+    <ion-button fill="clear" expand="full" color="primary" >
+      <ion-icon slot="start" name="document-text"></ion-icon>Choose File
+    </ion-button>
+    <div class="image-upload-info" *ngIf="fileInfos && fileInfos?.progress && fileStatusMessage">
+      <ion-spinner name="bubbles" *ngIf="fileInfos.progress < 100"></ion-spinner> {{fileInfos.progress < 100
+        ? 'Uploading...' : 'Info ' }}: {{fileStatusMessage}} <ion-progress-bar [value]="fileInfos.progress || 0">
+        </ion-progress-bar>
+    </div>
+    <span class="error" *ngIf="!fileInfos.progress && fileStatusMessage">{{fileStatusMessage}}</span>
+  </div>
+  <div class="preview" [hidden]="fileInfos.progress">
+    <ion-thumbnail><img imageLoad="PROFILE" [hidden]="fileInfos.progress" [src]="fileInfos.filePath"></ion-thumbnail>
+  </div>
+</div>
+
+<div  class="progress" *ngIf="fileInfos.progress">
+  <h4>Upload Progress <span >{{fileInfos.progress | number}}%</span></h4>
+  <ion-progress-bar [value]="fileInfos.progress/100" buffer=".2"></ion-progress-bar>
+  <!-- <div class="progress-bar" [style.width.%]="10">{{fileInfos.progress}}%</div> -->
+</div>

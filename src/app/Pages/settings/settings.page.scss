@@ -1,0 +1,24 @@
+ion-content {
+
+    .center-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 60vh;
+    }
+
+    .back {
+        background-color: #d1dcd2;
+    }
+
+    .text {
+        margin-left: 10px;
+        font-size: large;
+        font-weight: 500;
+    }
+
+    .border{
+        border: 1px solid;
+    }
+}

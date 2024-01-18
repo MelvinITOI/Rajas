@@ -1,0 +1,158 @@
+<ion-menu contentId="main-content" *ngIf="!showfield">
+  <ion-header>
+    <ion-toolbar class="Dashboard_content">
+      <ion-title>{{profile?.first_name}}</ion-title>
+      <ion-avatar>
+        <img class="img" alt="Silhouette of a person's head"
+          src="https://img.freepik.com/premium-vector/crown-logo-vector-illustration-royal-look-logo_469071-154.jpg" />
+      </ion-avatar>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <!-- <ion-item>
+      <ion-icon *ngIf="moon" name="moon"></ion-icon>
+      <ion-label style="margin-left: 10px;">Dark Mode</ion-label>
+      <ion-toggle (ionChange)="darkMode($event)"></ion-toggle>
+    </ion-item> -->
+    <ion-item [routerLink]="['/event-food']" [queryParams]="{type:1}">
+      <ion-icon name="people-outline" color="primary"></ion-icon>
+      <ion-label style="margin-left: 10px;">Visitor</ion-label>
+    </ion-item>
+    <ion-item [routerLink]="['/event-food']" [queryParams]="{type:2}">
+      <ion-icon name="ticket-outline" color="primary"></ion-icon>
+      <ion-label style="margin-left: 10px;">Food Collector</ion-label>
+    </ion-item>
+    <ion-item [routerLink]="['/event-food']" [queryParams]="{type:3}">
+      <ion-icon name="person-outline" color="primary"></ion-icon>
+      <ion-label style="margin-left: 10px;">Event Manager</ion-label>
+    </ion-item>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar style="height: 75px;" class="new-background-color">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Dashboard</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <!--Dashboard-->
+    <ng-container *ngIf="!showfield">
+      <ion-card color="light" class="card_1" style="background-color: lightgrey;">
+        <!-- <ion-chip></ion-chip> -->
+        <ion-card-content>
+          <ion-grid *ngFor="let a of Dashboard_1">
+            <ion-row>
+              <!-- <ion-icon name="radio-button-on" style="margin-top: 10px;"></ion-icon> -->
+              <ion-col class="Dashboard" style="color: silver;">{{a.title}}</ion-col>
+              <ion-col style="text-align: center;"><ion-badge>{{dashboard?.[a.colname] || ''}}</ion-badge></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <ion-card color="light" class="card_2" style="background-color: lightgrey;">
+        <!-- <ion-chip></ion-chip> -->
+        <ion-card-content>
+          <ion-grid *ngFor="let a of Dashboard_2">
+            <ion-row>
+              <!-- <ion-icon name="radio-button-on" style="margin-top: 10px;"></ion-icon> -->
+              <ion-col class="Dashboard" style="color: silver;">{{a.title}}</ion-col>
+              <ion-col style="text-align: center;"><ion-badge>{{dashboard?.[a.colname] || ''}}</ion-badge></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+      <ion-card color="light" class="card_3" style="background-color: lightgrey;">
+        <!-- <ion-chip></ion-chip> -->
+        <ion-card-content>
+          <ion-grid *ngFor="let a of Dashboard_3">
+            <ion-row>
+              <!-- <ion-icon name="radio-button-on" style="margin-top: 10px;"></ion-icon> -->
+              <ion-col class="Dashboard" style="color: silver;">{{a.title}}</ion-col>
+              <ion-col style="text-align: center;"><ion-badge>{{dashboard?.[a.colname] || ''}}</ion-badge></ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+    <!--Dashboard Ends-->
+    <!--Member-->
+    <ion-card [routerLink]="['/member']" class="card_1" *ngIf="showfield">
+      <ion-card-title class="ion-padding" style="color: lightsteelblue;">Member</ion-card-title>
+      <ion-card-content>
+        <div>
+          <ion-icon class="content" name="people" size="large"
+            style="justify-content: center;color: powderblue;"></ion-icon>
+        </div>
+        <ion-label style="text-align: center;display: inherit;font-weight: 700;font-size: large;color: #c0c0c0;">Welcome
+          {{memberDetails?.name}}</ion-label>
+        <!-- <p style="text-align: center;font-weight: 700;font-size: large;color: silver;">Member Details</p> -->
+      </ion-card-content>
+    </ion-card>
+    <!--Member-->
+    <!--Event-->
+    <ion-card class="card_2" *ngIf="showfield">
+      <ion-card-title class="ion-padding" style="color: lightsteelblue;">Up Coming Event</ion-card-title>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-icon name="star-half" style="margin-top: 7px;color: silver;font-size: 20px;"></ion-icon>
+            <!-- <ion-col>{{a.title}}</ion-col> -->
+            <ion-col style="font-weight: 700;font-size: large;color: silver;">{{memberDetails?.event?.event_name ||
+              ''}}</ion-col>
+            <ion-label id="open-modal" style="color: silver;">More</ion-label>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+    <!--Event-->
+    <!--Event Modal-->
+    <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button (click)="cancel()">Cancel</ion-button>
+            </ion-buttons>
+            <ion-title>Event</ion-title>
+            <!-- <ion-buttons slot="end">
+              <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+            </ion-buttons> -->
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-grid *ngFor="let a of eventData">
+            <ion-row [ngSwitch]="a.type">
+              <ion-icon name="star-half" style="margin-top: 3px;color: slategrey;font-size: 20px;"></ion-icon>
+              <ion-col style="font-weight: 700;">{{a.title}}</ion-col>
+              <ion-col *ngSwitchCase="'date'">{{memberDetails?.event?.[a.colname || ''] || '' | date}}</ion-col>
+              <ion-col *ngSwitchDefault>{{memberDetails?.event?.[a.colname || ''] || ''}}</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+    <!--Event Modal-->
+    <!--Session-->
+    <ion-card class="card_3" *ngIf="showfield">
+      <ion-card-title class="ion-padding" style="color: lightsteelblue;">Up coming Session</ion-card-title>
+      <ion-card-content>
+        <ion-grid *ngFor="let a of sessions">
+          <ion-row [ngSwitch]="a.type">
+            <!-- <ion-icon name="radio-button-on" style="margin-top: 8px;color: black;"></ion-icon> -->
+            <ion-col style="font-weight: 700;color: silver;">{{a.title}}</ion-col>
+            <ion-col *ngSwitchCase="'DATE'" style="color: silver;">{{memberDetails?.session[a.colname || ''] || '' |
+              date}}</ion-col>
+            <ion-col *ngSwitchCase="'TIME'" style="color: silver;">{{memberDetails?.session[a.colname || ''] || '' |
+              date:'HH:mm'}}</ion-col>
+            <ion-col *ngSwitchDefault style="color: silver;">{{memberDetails?.session[a.colname || ''] || ''}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+    <!--session-->
+  </ion-content>
+</div>

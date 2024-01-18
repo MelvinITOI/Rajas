@@ -1,0 +1,66 @@
+.scan-box {
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 100vmax rgb(0, 0, 0, 0.5);
+    content: "";
+    display: block;
+    left: 50%;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+  }
+  .scan-button {
+    margin: 0px;
+    position: absolute;
+    bottom: 100px;
+    width: 100vw;
+    height: 50px;
+    z-index: 11;
+  }
+  ion-footer{
+    position: fixed;
+    left:0;
+    right: 0;
+    bottom: 0px;
+  }
+  .center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 20vh;
+  }
+  ion-backdrop {
+    opacity: 0.9;
+    background-color: lightsteelblue;
+  }
+  
+  #box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ion-background-color, #fff);
+    width: 60%;
+    // height: 100px;
+    border-radius: 10px;
+  }
+  .error{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ion-background-color, #fff);
+    width: 60%;
+    border-radius: 10px;
+  }
+  

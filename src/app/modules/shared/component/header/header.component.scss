@@ -1,0 +1,19 @@
+ion-header {
+    background-color: #e2e0e0;
+    ion-toolbar {
+        margin-top: 6px;
+        --background : transparent;
+        padding: 0;
+        margin: 0;
+        
+        ion-button {
+            align-self: center;
+            margin-left: 0;
+        }
+        ion-title {
+            align-items: center;
+            text-align: center;
+            font-size: 22px;
+        }
+    }
+}

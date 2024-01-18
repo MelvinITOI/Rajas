@@ -1,0 +1,22 @@
+<header [pageTitle]="'Payment'" [showBackBtn]="false"></header>
+
+<ion-content>
+  <div class="ion-padding">
+    <!-- <ion-card>
+      <ion-card-content> -->
+        <ng-container *ngFor="let a of paymentDetails">
+          <ion-grid *ngFor="let b of payment">
+            <ion-row [ngSwitch]="b.type">
+              <ion-col style=" font-weight: 600;font-size: large;">{{b.name}}</ion-col>
+              <ion-col *ngSwitchCase="'DATE'" style="text-align: center;">{{a?.[b.colname] || '' |date}}</ion-col>
+              <ion-col *ngSwitchDefault style="text-align: center;">{{a?.[b.colname] || '' }}</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ng-container>
+      <!-- </ion-card-content>
+    </ion-card> -->
+  </div>
+  <ion-footer lines="none">
+    <ion-button expand="full" (click)="submit()">Done</ion-button>
+  </ion-footer>
+</ion-content>

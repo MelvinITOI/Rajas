@@ -1,0 +1,20 @@
+<header [pageTitle]="'Edit Member'" [showBackBtn]="true"></header>
+
+<ion-content [formGroup]="dataForm">
+  <div class="ion-padding" *ngFor="let a of inputs">
+
+    <ion-item fill="outline">
+      <ion-label position="floating">{{a?.title}}</ion-label>
+      <ion-input formControlName="{{a?.colname}}" placeholder="{{'Enter'+ a?.title}}"></ion-input>
+    </ion-item>
+
+  </div>
+  <div>
+    <!-- <ion-chip style="margin-left: 10px;">Choose File</ion-chip> -->
+    <p class="ion-padding">PDF</p>
+    <app-image-upload #imageupload [inputFile]="imageData"></app-image-upload>
+  </div>
+  <div>
+    <ion-button expand="block" (click)="SaveMember()">Submit</ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,8 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="ion-text-center ion-no-border">
+      <ion-button  (click)="showBackBtn ? goToBack() : ''" fill="clear" slot="start">
+        <ion-icon *ngIf="showBackBtn" [name]="backBtn.icon || 'arrow-back-outline'"></ion-icon>
+      </ion-button>
+      <ion-title class="">{{pageTitle}}</ion-title>
+  </ion-toolbar>
+</ion-header>

@@ -1,0 +1,25 @@
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content refreshingSpinner="crescent"></ion-refresher-content>
+</ion-refresher>
+<!--- all the other code... -->
+<ion-list >
+  <ion-list-header >
+    <!-- <ion-searchbar color="light" (ionChange)="onChangeInput($event,'searchTerms')" [debounce]="1000"></ion-searchbar> -->
+    <ng-container *ngFor="let a of filterCol">
+      <ion-select *ngIf="f.type == 'select'" interface="popover"
+        (ionChange)="onChangeInput($event,f.colName)">
+        <ion-select-option value="">{{DATA_LOADING[f?.colName] ? 'loading...' : 'Select'+f?.title}}</ion-select-option>
+        <ng-container *ngIf="FORM_SUPPORT_DATA[f?.colName]">
+          <ng-container *ngFor="let m of FORM_SUPPORT_DATA[f?.colName]">
+            <ion-select-option [value]="m[f?.selectPrimaryKey]">{{m[f?.selectKeyName]}}</ion-select-option>
+          </ng-container>
+        </ng-container>
+      </ion-select>
+    </ng-container>
+  </ion-list-header>
+  <app-swipe-item #swipeItem *ngFor="let m of dataList | sort :'updated_at':true; trackBy: trackByFn;let i = index; "
+    [data]="m" (onEvent)="onEvent($event)" (onClick)="goToDetail($event)" [dataCol]="dataConfig"></app-swipe-item>
+</ion-list>
+<ion-infinite-scroll [threshold]="'50px'" (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+</ion-infinite-scroll>

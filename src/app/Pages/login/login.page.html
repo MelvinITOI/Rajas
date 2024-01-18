@@ -1,0 +1,35 @@
+<ion-content [formGroup]="loginForm">
+  <div class="center-screen">
+    <ion-col>
+      <h2 class="ion-padding" style="text-align: center;"><ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar><br>Login</h2>
+      <ion-card class="cardconteudo">
+        <ion-card-content>
+          <ion-item>
+            <ion-icon name="mail-outline"></ion-icon>
+            <ion-input style="margin-left: 10px;" formControlName="username" type="text"
+              placeholder="@gmail.com"></ion-input><br>
+            <ng-container *ngIf="IsSubmitted && val['username'].errors?.['required']">
+              <ion-icon name="information-circle-outline" style="color: red;margin-left: 20px;"></ion-icon>
+              <span class="error_text ion-padding" style="color: red;">Required</span>
+            </ng-container>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="key-outline"></ion-icon>
+            <ion-input style="margin-left: 10px;" formControlName="password" type="Password"
+              placeholder="Password"></ion-input>
+            <ng-container *ngIf="IsSubmitted && val['password'].errors?.['required']">
+              <ion-icon name="information-circle-outline" style="color: red;"></ion-icon>
+              <span class="error_text ion-padding" style="color: red;">Required</span>
+            </ng-container>
+          </ion-item>
+        </ion-card-content>
+      </ion-card><br>
+      <ion-button (click)="gotologin()" style="width: 45%;"> 
+        <ion-label > <ion-spinner *ngIf="loading"></ion-spinner> Submit</ion-label>
+      </ion-button>
+    </ion-col>
+  </div>
+  <ion-img class="ion-padding" src="/assets/img/logo.png"></ion-img>
+</ion-content>

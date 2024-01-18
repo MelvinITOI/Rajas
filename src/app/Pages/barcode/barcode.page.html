@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-icon name="caret-back" size="large" (click)="back()"></ion-icon>
+  <ion-item lines="full">
+    <ion-label style="text-align: center;">Token ID : {{membername?.token_id || ''}}</ion-label>
+  </ion-item>
+  <ng-container >
+  <ion-item lines="none">
+    <ion-label style="text-align: center;">Name : {{membername?.ref_name}}</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+    <ion-label style="text-align: center;">Ref code : {{membername?.ref_code}}</ion-label>
+  </ion-item>
+</ng-container>
+  <div class="ion-padding center-screen">
+    <ion-col *ngIf="membername?.token_id">
+      <qr-code value="{{membername.token_id}}" size="300" errorCorrectionLevel="M"></qr-code>
+      <ion-badge>Token ID</ion-badge>
+    </ion-col>
+  </div>
+</ion-content>

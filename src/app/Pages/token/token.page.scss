@@ -1,0 +1,17 @@
+ion-content{
+
+ion-card {
+    margin: 12px 10px 12px 10px;
+    border: 1px solid #8d8d8d55;
+    border-radius: 15px;
+    // background-color:rgb(201, 75, 47);s
+    box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 50%);
+}
+
+ion-chip {
+    width: -webkit-fill-available;
+    justify-content: space-around;
+    color: silver;
+    background-image: linear-gradient(197deg, #366fd6 0%, #374e70 13.5%, #27406d 33.33%, #175784 100%) !important;
+}
+}

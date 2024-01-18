@@ -1,0 +1,22 @@
+<header [pageTitle]="'Food Token'"></header>
+
+<ion-content>
+  <app-data-list #dataList *ngIf="isAdmin" [parentGetList]="getFoodTokenList" [dataConfig]="dataConfig"></app-data-list>
+  <div class="ion-padding" *ngIf="!isAdmin">
+    <ng-container *ngFor="let b of foodtoken;let i = index">
+      <ion-card (click)="gotobarcode(i)" style="background-color: whitesmoke;">
+        <ion-chip>Token ID: {{b?.token_id}}</ion-chip>
+        <ion-card-content>
+          <ion-grid *ngFor="let a of token">
+            <ion-row [ngSwitch]="a.type">
+              <ion-icon name="star-half" style="margin-top: 3px;color: steelblue;font-size: 20px;"></ion-icon>
+              <ion-col style="font-weight: 700;">{{a.title}}</ion-col>
+              <ion-col *ngSwitchCase="'date'" style="margin-left: 10px;">{{b?.[a.colname] || '' | date}}</ion-col>
+              <ion-col *ngSwitchDefault style="margin-left: 10px;">{{b?.[a.colname] || ''}}</ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </div>
+</ion-content>

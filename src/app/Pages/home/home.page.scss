@@ -1,0 +1,60 @@
+ion-card {
+    margin: 12px 10px 12px 10px;
+    border: 1px solid #8d8d8d55;
+    border-radius: 15px;
+    // background-color:rgb(201, 75, 47);s
+    box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 50%);
+}
+
+.new-background-color{
+    --background: #e2e0e0;
+}
+And then refer to it i
+
+.Dashboard_content {
+    border-bottom: solid;
+    height: 105%;
+}
+
+.img {
+    margin-left: 7px;
+}
+
+.content {
+    width: -webkit-fill-available;
+}
+
+.card_1 {
+    margin-top: 20px;
+    background-image: linear-gradient(197deg, #286d99 0%, #2c6674 13.5%, #096074 33.33%, #1a605f 100%) !important;
+}
+
+.card_2 {
+    margin-top: 20px;
+    background-image: linear-gradient(197deg, #385790 0%, #374e70 13.5%, #27406d 33.33%, #173e5a 100%) !important;
+}
+
+.card_3 {
+    margin-top: 20px;
+    background-image: linear-gradient(197deg, #306687 0%, #0a5484 13.5%, #10486a 33.33%, #162a38 100%) !important;
+}
+
+.Dashboard {
+    font-weight: 600;
+    font-size: large;
+}
+ion-chip{
+    background-image:linear-gradient(197deg, #306687 0%, #2b78aa 13.5%, #2778a9 33.33%, #416782 100%) !important;
+    width: -webkit-fill-available;
+    text-align: center;
+    display: table;
+    font-size: larger;
+    font-weight: 600;
+}
+ion-title{
+    margin-top: 10px;
+    font-size: larger;
+}
+ion-badge{
+    width: 50%;
+}

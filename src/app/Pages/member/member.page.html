@@ -1,0 +1,17 @@
+<header [pageTitle]="'Member Details'" [showBackBtn]="true"></header>
+
+<ion-content>
+  <ion-grid *ngFor="let a of Details">
+    <ion-row [ngSwitch]="a.type">
+      <!-- <ion-icon name="radio-button-on" style="margin-top: 8px;color: slategrey;"></ion-icon> -->
+      <ion-col style="font-weight:700 ;">{{a.title}}</ion-col>
+      <ion-col *ngSwitchCase="'date'">{{memberDetails?.[a.colname || ''] || '' | date }}</ion-col>
+      <ion-col *ngSwitchDefault>{{memberDetails?.[a.colname || ''] || ''}}</ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" color="primary" slot="fixed">
+    <ion-fab-button noDoubleClick color="primary" #fab [routerLink]="['/edit-user']">
+      <ion-icon class="icon" name="pencil"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

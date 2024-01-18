@@ -1,0 +1,19 @@
+<header [pageTitle]="'Profile'" [showBackBtn]="true"></header>
+
+<ion-content [fullscreen]="true">
+    <div *ngFor="let a of Details">
+        <ion-item lines="half" [ngSwitch]="a.type">
+            <ion-icon class="gems" color="primary" name="{{a?.icon}}" slot="start"></ion-icon>
+            <div class="info_div" *ngIf="profile">
+                <h6 class="heading text-overflow">{{a.title}}</h6>
+                <h6 class="description text-overflow" *ngSwitchCase="'DATE'"><ion-text
+                        color="medium">{{profile[a?.colname || ''] ||
+                        '' | date:'dd/MM/yyy' }}
+                    </ion-text></h6>
+                <h6 class="description text-overflow" *ngSwitchDefault><ion-text
+                    color="medium">{{profile[a?.colname || ''] || '' }}</ion-text>
+                </h6>
+            </div>
+        </ion-item>
+    </div>
+</ion-content>

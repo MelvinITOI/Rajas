@@ -1,0 +1,45 @@
+<header [pageTitle]="'Settings'"></header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-icon name="person" color="primary"></ion-icon>
+    <ion-label style="margin-left: 10px;" [routerLink]="['/profile']">Profile</ion-label>
+  </ion-item>
+  <ion-item *ngIf="showfield">
+    <ion-icon name="reader" color="primary"></ion-icon>
+    <ion-label style="margin-left: 10px;" [routerLink]="['/payment']">Payment</ion-label>
+  </ion-item>
+  <ion-item *ngIf="showfield">
+    <ion-icon name="scan" color="primary"></ion-icon>
+    <ion-label id="open-code" style="margin-left: 10px;">Member Code</ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="power" color="primary"></ion-icon>
+    <ion-label style="margin-left: 10px;" (click)="gotologout()">Logout</ion-label>
+  </ion-item>
+  
+  <!--modal-->
+  <ion-modal trigger="open-code" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <!-- <ion-title>Welcome</ion-title> -->
+          <!-- <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+          </ion-buttons> -->
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class="ion-padding center-screen">
+          <ion-col *ngIf="memberDetails?.member_code">
+            <qr-code value="{{memberDetails?.member_code}}" size="300" errorCorrectionLevel="M"></qr-code>
+            <ion-badge>Member ID {{memberDetails?.member_code}}</ion-badge>
+          </ion-col>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

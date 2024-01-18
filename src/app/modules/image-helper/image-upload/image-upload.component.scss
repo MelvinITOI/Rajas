@@ -1,0 +1,25 @@
+.image-upload-info {
+    text-align: center;
+}
+
+.form {
+    min-width: 88vw;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: -webkit-fill-available;
+
+    .custom-file {
+        width: 55%;
+    }
+
+    .preview {
+        align-items: right;
+        width: 45%;
+        text-align: -webkit-center;
+    }
+}
+
+ion-thumpnail {
+    --size:var(100px)
+}
