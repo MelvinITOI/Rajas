@@ -52,7 +52,7 @@ export class EventFoodPage implements OnInit {
   }
 
   ngAfterViewInit() {
-
+    BarcodeScanner.prepare();
   }
 
   ngOnDestroy() {
